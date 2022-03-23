@@ -1,6 +1,8 @@
 test <- read.table("X_test.txt") #assumes files are all in current wd
 train <- read.table("X_train.txt")
-ftr <- read.table("features.txt") 
+ftr <- read.table("features.txt")
+y_test <- read.table("y_test.txt")
+y_train <- read.table("y_train.txt")
 mrg <- rbind(test, train)
 ftrsub <- ftr[grep("mean", ftr$V2), ] #extract only values for mean
 ftrsub2 <- ftr[grep("std", ftr$V2), ] #extract only values for std
@@ -10,3 +12,7 @@ cols_trainTest <- mrg2[, 1] #identify integer values for matching mrg columns
 vals <- mrg[, cols_trainTest] #df with only values for mean and std
 
 #next push
+y_test <- read.table("y_test.txt") #use these next
+y_train <- read.table("y_train.txt")
+y_new <- rbind(y_test, y_train)
+namesMatch <- cbind(y_new, vals)
