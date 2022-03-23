@@ -6,5 +6,5 @@ ftrsub <- ftr[grep("mean", ftr$V2), ]
 ftrsub2 <- ftr[grep("std", ftr$V2), ]
 mrg2 <- rbind(ftrsub, ftrsub2)
 mrg2 <- arrange(mrg2, mrg2$V1)
-#next
+#next push
 
