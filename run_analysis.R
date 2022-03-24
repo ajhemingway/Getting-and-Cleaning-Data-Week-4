@@ -16,3 +16,4 @@ colnames(y_new) <- "Activity" #assign label to activity types
 namesMatch <- cbind(y_new, vals)
 desc_names <- c("walking", "walking upstairs", "walking downstairs", "sitting", "standing", "laying")
 #using names from activity labels
+#did this work
