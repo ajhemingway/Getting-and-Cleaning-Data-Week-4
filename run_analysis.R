@@ -10,9 +10,10 @@ mrg2 <- rbind(ftrsub, ftrsub2) #combine features into one df
 mrg2 <- arrange(mrg2, mrg2$V1)
 cols_trainTest <- mrg2[, 1] #identify integer values for matching mrg columns
 vals <- mrg[, cols_trainTest] #df with only values for mean and std
-
-#next push
-y_test <- read.table("y_test.txt") #use these next
+y_test <- read.table("y_test.txt") 
 y_train <- read.table("y_train.txt")
 y_new <- rbind(y_test, y_train)
+colnames(y_new) <- "Activity" #assign label to activity types
 namesMatch <- cbind(y_new, vals)
+desc_names <- c("walking", "walking upstairs", "walking downstairs", "sitting", "standing", "laying")
+#using names from activity labels
