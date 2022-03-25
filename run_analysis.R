@@ -14,12 +14,11 @@ run_analysis <- function(x){
         extract <- mrg[, grep("mean", colnames(mrg))] 
                 %>% cbind(mrg[, grep("std", colnames(mrg))]) #chain to extract only "mean" and "std" variables
         extract <- cbind(y_new, extract) #then append training labels to first column
-        
-        #CONTINUE HERE TO ASSIGN ACTIVITY NAMES IN PLACE OF NUMBERS FOR FIRST COLUMN
-        
-        colnames(y_new) <- "Activity" #assign label to activity types
-        namesMatch <- cbind(y_new, vals)
-        desc_names <- c("walking", "walking upstairs", "walking downstairs", "sitting", "standing", "laying")
-        #using names from activity labels
-
+        extract <- extract %>% mutate(V1 = replace(V1, V1 == 1, "WALKING"))
+        extract <- extract %>% mutate(V1 = replace(V1, V1 == 2, "WALKING_UPSTAIRS"))
+        extract <- extract %>% mutate(V1 = replace(V1, V1 == 3, "WALKING_DOWNSTAIRS"))
+        extract <- extract %>% mutate(V1 = replace(V1, V1 == 4, "SITTING"))
+        extract <- extract %>% mutate(V1 = replace(V1, V1 == 5, "STANDING"))
+        extract <- extract %>% mutate(V1 = replace(V1, V1 == 6, "LAYING"))
+        #use mutate and replace to assign activity labels
 }
