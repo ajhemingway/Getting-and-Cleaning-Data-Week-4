@@ -53,6 +53,6 @@ run_analysis <- function(x){
         sub27 <- extract[extract$Subject == 27, ]
         sub28 <- extract[extract$Subject == 28, ]
         sub29 <- extract[extract$Subject == 29, ]
-        sub30 <- extract[extract$Subject == 30, ]
+        sub30 <- extract[extract$Subject == 30, ]#subject identifiers 
         
 }
