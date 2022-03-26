@@ -25,35 +25,10 @@ run_analysis <- function(x){
         #use mutate and replace to assign activity labels
         colnames(extract)[colnames(extract) =="V1"] <- "Activity"
         extract <- cbind(submrg, extract)
-        sub1 <- extract[extract$Subject == 1, ]
-        sub2 <- extract[extract$Subject == 2, ]
-        sub3 <- extract[extract$Subject == 3, ]
-        sub4 <- extract[extract$Subject == 4, ]
-        sub5 <- extract[extract$Subject == 5, ]
-        sub6 <- extract[extract$Subject == 6, ]
-        sub7 <- extract[extract$Subject == 7, ]
-        sub8 <- extract[extract$Subject == 8, ]
-        sub9 <- extract[extract$Subject == 9, ]
-        sub10 <- extract[extract$Subject == 10, ]
-        sub11 <- extract[extract$Subject == 11, ]
-        sub12 <- extract[extract$Subject == 12, ]
-        sub13 <- extract[extract$Subject == 13, ]
-        sub14 <- extract[extract$Subject == 14, ]
-        sub15 <- extract[extract$Subject == 15, ]
-        sub16 <- extract[extract$Subject == 16, ]
-        sub17 <- extract[extract$Subject == 17, ]
-        sub18 <- extract[extract$Subject == 18, ]
-        sub19 <- extract[extract$Subject == 19, ]
-        sub20 <- extract[extract$Subject == 20, ]
-        sub21 <- extract[extract$Subject == 21, ]
-        sub22 <- extract[extract$Subject == 22, ]
-        sub23 <- extract[extract$Subject == 23, ]
-        sub24 <- extract[extract$Subject == 24, ]
-        sub25 <- extract[extract$Subject == 25, ]
-        sub26 <- extract[extract$Subject == 26, ]
-        sub27 <- extract[extract$Subject == 27, ]
-        sub28 <- extract[extract$Subject == 28, ]
-        sub29 <- extract[extract$Subject == 29, ]
-        sub30 <- extract[extract$Subject == 30, ]#subject identifiers 
+                %>% arrange(extract$Subject)
+        new <- split(extract, extract$Activity)
+        new1 <- lapply(new, function(x) split(x[3:35], x$Subject))
+        avgs <- as.data.frame(sapply(new1, function(x) sapply(x, colMeans)))
+        #split, apply, combine to find averages of each activity for each subject
         
 }
