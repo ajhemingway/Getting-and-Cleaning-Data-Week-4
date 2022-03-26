@@ -24,6 +24,7 @@ run_analysis <- function(x){
         extract <- extract %>% mutate(V1 = replace(V1, V1 == 6, "LAYING"))
         #use mutate and replace to assign activity labels
         colnames(extract)[colnames(extract) =="V1"] <- "Activity"
+        extract <- cbind(submrg, extract)
         sub1 <- extract[extract$Subject == 1, ]
         sub2 <- extract[extract$Subject == 2, ]
         sub3 <- extract[extract$Subject == 3, ]
