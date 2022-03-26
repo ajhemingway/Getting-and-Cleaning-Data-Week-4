@@ -25,10 +25,11 @@ run_analysis <- function(x){
         #use mutate and replace to assign activity labels
         colnames(extract)[colnames(extract) =="V1"] <- "Activity"
         extract <- cbind(submrg, extract)
-                %>% arrange(extract$Subject)
-        new <- split(extract, extract$Activity)
-        new1 <- lapply(new, function(x) split(x[3:35], x$Subject))
-        avgs <- as.data.frame(sapply(new1, function(x) sapply(x, colMeans)))
+        colnames(extract)[colnames(extract) == "V1"] <- "Subject"
+        extract <- arrange(extract$Subject)
+        new <- split(extract, extract$Subject)
+        new1 <- lapply(new, function(x) split(x[3:81], x$Subject))
+        avgs <- as.data.frame(t(sapply(new1, function(x) sapply(x, colMeans))))
         #split, apply, combine to find averages of each activity for each subject
         
 }
