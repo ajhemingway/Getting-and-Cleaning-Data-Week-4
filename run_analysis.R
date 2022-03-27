@@ -14,7 +14,7 @@ run_analysis <- function(x){
         names <- as.character(ftr[2, ])
         colnames(mrg) <- names
         extract <- mrg[, grep("mean", colnames(mrg))] 
-                %>% cbind(mrg[, grep("std", colnames(mrg))]) #chain to extract only "mean" and "std" variables
+        extract <- cbind(extract, mrg[, grep("std", colnames(mrg))]) 
         extract <- cbind(y_new, extract) #then append training labels to first column
         extract <- extract %>% mutate(V1 = replace(V1, V1 == 1, "WALKING"))
         extract <- extract %>% mutate(V1 = replace(V1, V1 == 2, "WALKING_UPSTAIRS"))
@@ -26,10 +26,11 @@ run_analysis <- function(x){
         colnames(extract)[colnames(extract) =="V1"] <- "Activity"
         extract <- cbind(submrg, extract)
         colnames(extract)[colnames(extract) == "V1"] <- "Subject"
-        extract <- arrange(extract$Subject)
+        extract <- arrange(extract, extract$Subject)
         new <- split(extract, extract$Subject)
-        new1 <- lapply(new, function(x) split(x[3:81], x$Subject))
-        avgs <- as.data.frame(t(sapply(new1, function(x) sapply(x, colMeans))))
-        #split, apply, combine to find averages of each activity for each subject
-        
+        new1 <- lapply(new, function(x) split(x[3:81], x$Activity))
+        newdf1 <- data.frame(matrix(ncol = 79, nrow = 0))
+        colnames(newdf1) <- colnames(extract[3:81])
+        a <- t(as.data.frame(lapply(new1, function(x) {sapply(x, function(x) {sapply(x, mean)})})))
+        #nested apply functions to calculate mean of desired columns
 }
