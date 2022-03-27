@@ -33,6 +33,6 @@ run_analysis <- function(x){
         a <- t(as.data.frame(lapply(new1, function(x) {sapply(x, function(x) {sapply(x, mean)})})))
         #nested apply functions to calculate mean of desired columns
         newdf <<- cbind(newdf, a)
-        write.table(newdf, "newdf", row.names = FALSE)
+        write.table(newdf, "newdf.txt", row.names = FALSE)
         #creates a new tidy data frame with all desired values in the global environment with "<<-"
 }
