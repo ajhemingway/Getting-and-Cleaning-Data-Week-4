@@ -29,8 +29,9 @@ run_analysis <- function(x){
         extract <- arrange(extract, extract$Subject)
         new <- split(extract, extract$Subject)
         new1 <- lapply(new, function(x) split(x[3:81], x$Activity))
-        newdf1 <- data.frame(matrix(ncol = 79, nrow = 0))
-        colnames(newdf1) <- colnames(extract[3:81])
+        newdf <- unique(select(extract, Subject, Activity))
         a <- t(as.data.frame(lapply(new1, function(x) {sapply(x, function(x) {sapply(x, mean)})})))
         #nested apply functions to calculate mean of desired columns
+        newdf <<- cbind(newdf, a)
+        #creates a new tidy data frame with all desired values in the global environment with "<<-"
 }
