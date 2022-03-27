@@ -1,0 +1,37 @@
+This code book helps describe the variables, data, and transformatinos used to clean up the given dataset during week 4. 
+
+VARIABLES:
+  SUBJECT
+    SUBJECTS #1-30
+      Each of 30 subjects who articpated in the research are represented here with a number ranging from 1-30. All subjects were wearing a Samsung device         at the waist and data from the device accelerometers were gathered.
+      
+  ACTIVITY
+    STANDING
+      Subject data gathered while standing
+    SITTING
+      Subject data gathered while sitting
+    LAYING
+      Subject data gathered while laying
+    WALKING
+      Subject data gathered while walking
+    WALKING_UPSTAIRS
+      Subject data gathered while walking up stairs
+    WALKING_DOWNSTAIRS
+      Subject data gathered while walking down stairs 
+ 
+ MEASUREMENT DATA
+    The measurement data is listed is the following sample: tBodyAcc-mean()-X 
+        t --> meaurements taken with respect to time
+          "f" --> measurements taken with respect to frequency
+        Body --> measurements taken with respect to forces from the body of the subject
+           "Gravity" --> measurements taken with respect to forces from gravity
+        Acc --> measurements taken with respect to the device accelerometer
+          "Gryo" --> measurement taken with respect to the device gyroscope
+        mean --> measuremnts of the mean
+          "std" --> measurements of the standard deviation
+        X --> measurements taken with respect to the side-to-side (X) direction
+          "Y" or "Z" --> measurements in the vertical (Y) and transverse (Z) directions
+          
+TRANSFORMATIONS ON DATA
+  This data was read from files supplied with the assignment. The test set and train set were combined. The only the values for "mean" and "std" were         extracted and arranged in a new data frame. A series of lists was created from the subset data in order to split at the desired locations, apply a mean     calculation to each element, then combine the elements back into a tidy data frame at the end.
+        
